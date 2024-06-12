@@ -15,7 +15,7 @@
 
   <div class="main-content">
     <mat-toolbar color="primary">
-      <mat-toolbar-row>
+      <mat-toolbar-row class="header-toolbar">
         <button type="button" mat-button (click)="drawer.toggle()">
           <mat-icon class="white">menu</mat-icon>
         </button>
@@ -23,8 +23,10 @@
       </mat-toolbar-row>
     </mat-toolbar>
 
-    <router-outlet />
-    
+    <div class="router-container">
+      <router-outlet />
+    </div>
+
   </div>
 
 </mat-drawer-container>
