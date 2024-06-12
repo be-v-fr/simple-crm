@@ -2,11 +2,11 @@
   <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
     <div class="logo-container">LOGO</div>
     <nav class="sidenav-menu">
-      <a>
+      <a routerLink="/dashboard">
         <mat-icon>dashboard</mat-icon>
         <span>Dashboard</span>
       </a>
-      <a>
+      <a routerLink="/user">
         <mat-icon>person_outline</mat-icon>
         <span>User</span>
       </a>
@@ -22,10 +22,9 @@
         <span>Simple CRM</span>
       </mat-toolbar-row>
     </mat-toolbar>
+
+    <router-outlet />
     
   </div>
 
 </mat-drawer-container>
-
-
-<router-outlet />
