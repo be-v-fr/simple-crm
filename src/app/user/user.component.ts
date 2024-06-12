@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.component';
 
 @Component({
   selector: 'app-user',
@@ -13,4 +15,12 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 })
 export class UserComponent {
 
+  constructor(public dialog: MatDialog) { }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogAddUserComponent, {
+      data: {},
+    });
+    dialogRef.afterClosed().subscribe(result => console.log(result));
+  }
 }
