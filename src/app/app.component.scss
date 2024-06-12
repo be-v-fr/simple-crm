@@ -1,0 +1,36 @@
+.mat-drawer-container {
+    height: 100dvh;
+    height: 100vh;
+    .sidenav {
+        width: 300px;
+        .logo-container {
+            width: 100%;
+            min-height: 56px;
+            border-bottom: 1px solid #CCCCCC;
+            padding: 16px;
+        }
+        .sidenav-menu {
+            display: flex;
+            flex-direction: column;
+            a {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 0 16px;
+                height: 48px;
+                &:hover {
+                    background: #F2F2F2;
+                }
+                &:active {
+                    background: #EAEAEA;
+                }
+            }
+        }
+    }
+}
+
+mat-toolbar,
+mat-toolbar-row {
+    height: 56px;
+    min-height: 56px;
+}

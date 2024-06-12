@@ -1,6 +1,31 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Simple CRM</span>
-  </mat-toolbar-row>
+<mat-drawer-container class="mat-drawer-container" autosize>
+  <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
+    <div class="logo-container">LOGO</div>
+    <nav class="sidenav-menu">
+      <a>
+        <mat-icon>dashboard</mat-icon>
+        <span>Dashboard</span>
+      </a>
+      <a>
+        <mat-icon>person_outline</mat-icon>
+        <span>User</span>
+      </a>
+    </nav>
+  </mat-drawer>
+
+  <div class="main-content">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button type="button" mat-button (click)="drawer.toggle()">
+          <mat-icon class="white">menu</mat-icon>
+        </button>
+        <span>Simple CRM</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    
+  </div>
+
+</mat-drawer-container>
+
 
 <router-outlet />
