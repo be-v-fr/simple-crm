@@ -33,11 +33,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
   styleUrl: './dialog-add-user.component.scss'
 })
 export class DialogAddUserComponent {
-  user = new User();
-
   constructor(
     public dialogRef: MatDialogRef<DialogAddUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public user: User,
+    @Inject(MAT_DIALOG_DATA) public birthDate: Date,
   ) {}
 
   onNoClick(): void {
@@ -45,6 +44,7 @@ export class DialogAddUserComponent {
   }
 
   saveNewUser(): void {
+    this.user.birthDate = this.birthDate.getTime();
     console.log(this.user);
   }
 }
