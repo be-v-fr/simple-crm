@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from '../../models/user.class';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,6 +15,7 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
   styleUrl: './user.component.scss'
 })
 export class UserComponent {
+  user = new User();
 
   constructor(public dialog: MatDialog) { }
 
