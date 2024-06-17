@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from '../../models/user.class';
 import { UsersService } from '../../services/users.service';
 
@@ -17,26 +17,15 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
-export class UserComponent implements OnDestroy {
-  private usersService = inject(UsersService);
+export class UserComponent {
+  usersService = inject(UsersService);
   user = new User();
-  users: User[] = [];
 
 
   /**
     * Create subscription
     */
-  constructor(public dialog: MatDialog) {
-    this.usersService.users$.subscribe(users => this.users = users);
-  }
-
-
-  /**
-   * Unsubscribe
-   */
-  ngOnDestroy(): void {
-    this.usersService.users$.unsubscribe();
-  }
+  constructor(public dialog: MatDialog) {  }
   
 
   openDialog() {
