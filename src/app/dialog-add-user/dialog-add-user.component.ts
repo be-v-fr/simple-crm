@@ -69,7 +69,7 @@ export class DialogAddUserComponent implements OnInit {
 
   saveNewUser(): void {
     this.loading = true;
-    this.user.birthDate = this.birthDate.getTime() ? this.birthDate.getTime() : 0;
+    this.user.birthDate = this.birthDate.getTime ? this.birthDate.getTime() : 0;
     this.usersService.addUser(this.user)
       .then(() => this.loading = false);
   }

@@ -6,7 +6,13 @@
             width: 100%;
             min-height: 56px;
             border-bottom: 1px solid #CCCCCC;
-            padding: 16px;
+            display: flex;
+            justify-content: center;
+            img {
+                display: block;
+                height: 56px;
+                cursor: pointer;
+            }
         }
         .sidenav-menu {
             display: flex;
