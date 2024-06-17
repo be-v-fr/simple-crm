@@ -12,7 +12,7 @@ export class UsersService {
 
   constructor() { }
 
-  async addUser(user: User) {
+  async addUser(user: User): Promise<void> {
     await addDoc(this.usersRef, user);
   }
 }
