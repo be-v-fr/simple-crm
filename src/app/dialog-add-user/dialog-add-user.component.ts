@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { User } from '../../models/user.class';
 import { FormsModule } from '@angular/forms';
+import { UsersService } from '../../services/users.service';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,6 +34,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
   styleUrl: './dialog-add-user.component.scss'
 })
 export class DialogAddUserComponent {
+  private usersService = inject(UsersService);
+
   constructor(
     public dialogRef: MatDialogRef<DialogAddUserComponent>,
     @Inject(MAT_DIALOG_DATA) public user: User,
@@ -45,6 +48,6 @@ export class DialogAddUserComponent {
 
   saveNewUser(): void {
     this.user.birthDate = this.birthDate.getTime();
-    console.log(this.user);
+    this.usersService.addUser(this.user);
   }
 }

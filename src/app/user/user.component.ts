@@ -23,6 +23,8 @@ export class UserComponent {
     const dialogRef = this.dialog.open(DialogAddUserComponent, {
       data: {},
     });
-    dialogRef.afterClosed().subscribe(result => console.log(result));
+    dialogRef.afterClosed().subscribe(
+      // result => console.log(result)
+    );
   }
 }
