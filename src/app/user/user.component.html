@@ -1,4 +1,21 @@
-<p>user works!</p>
-<button (click)="openDialog()" mat-fab matTooltip="Add user" matTooltipPosition="above" color="primary" class="add-user-btn">
+<mat-card appearance="outlined">
+    <mat-card-content>
+        <table class="users-table">
+            <th>Name</th>
+            <th>E-Mail</th>
+            <th>City</th>
+            @for (user of users; track user) {
+            <tr class="transition-standard">
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.city}}</td>
+            </tr>
+            }
+        </table>
+    </mat-card-content>
+</mat-card>
+
+<button (click)="openDialog()" mat-fab matTooltip="Add user" matTooltipPosition="above" color="primary"
+    class="add-user-btn">
     <mat-icon>add</mat-icon>
 </button>

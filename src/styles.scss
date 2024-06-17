@@ -20,18 +20,22 @@ body {
   }
 }
 
+.transition-standard {
+  @include transition-hover();
+}
+
 button {
   background: none;
   border: none;
   cursor: pointer;
-  @include transition-hover();
+  @extend .transition-standard;
 }
 
 a {
   color: initial;
   text-decoration: none;
   cursor: pointer;
-  @include transition-hover();  
+  @extend .transition-standard;
 }
 
 .white {
