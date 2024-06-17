@@ -9,8 +9,8 @@ import { User } from '../models/user.class';
 export class UsersService implements OnDestroy {
   private firestore = inject(Firestore);
   private usersRef = collection(this.firestore, 'users');
-  public users$ = new Subject<User[]>();
-  public users: User[] = [];
+  private users$ = new Subject<User[]>();
+  private users: User[] = [];
   unsubUsers;
 
 
@@ -42,6 +42,11 @@ export class UsersService implements OnDestroy {
       this.users$.next(users);
       this.users = users;
     });
+  }
+
+
+  getUsers(): User[] {
+    return this.users;
   }
 
   

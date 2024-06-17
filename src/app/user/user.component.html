@@ -4,7 +4,7 @@
             <th>Name</th>
             <th>E-Mail</th>
             <th>City</th>
-            @for (user of usersService.users; track user) {
+            @for (user of usersService.getUsers(); track user) {
             <tr class="transition-standard">
                 <td>{{user.firstName}} {{user.lastName}}</td>
                 <td>{{user.email}}</td>
