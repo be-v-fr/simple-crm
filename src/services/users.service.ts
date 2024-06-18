@@ -1,7 +1,8 @@
 import { Injectable, inject, OnDestroy } from '@angular/core';
-import { Firestore, collection, onSnapshot, collectionData, doc, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, collectionData, doc, getDocs, addDoc } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 import { User } from '../models/user.class';
+
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,7 @@ export class UsersService implements OnDestroy {
   private usersRef = collection(this.firestore, 'users');
   private users$ = new Subject<User[]>();
   private users: User[] = [];
+  private uids: string[] = [];
   unsubUsers;
 
 
@@ -20,7 +22,6 @@ export class UsersService implements OnDestroy {
   constructor() {
     this.unsubUsers = this.subUsers();
   }
-
 
   /**
    * Unsubscribe
@@ -37,16 +38,24 @@ export class UsersService implements OnDestroy {
    */
   subUsers() {
     return onSnapshot(this.usersRef, (list: any) => {
-      let users: User[] = [];
-      list.forEach((element: any) => users.push(new User(element.data())));
-      this.users$.next(users);
-      this.users = users;
+      this.users = [];
+      this.uids = [];
+      list.forEach((element: any) => {
+        this.users.push(new User(element.data()));
+        this.uids.push(element.id);
+      });
+      this.users$.next(this.users);
     });
   }
 
 
   getUsers(): User[] {
     return this.users;
+  }
+
+
+  getUids(): string[] {
+    return this.uids;
   }
 
   
