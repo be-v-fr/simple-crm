@@ -58,9 +58,19 @@ export class UsersService implements OnDestroy {
     const index = this.users.indexOf(user);
     if(index >= 0) {return this.uids[index]}
     else {
-      console.error('User not found', user);
+      console.error('User not found:', user);
       return null;
     }
+  }
+
+
+  getUserByUid(uid: string): User {
+    const index = this.uids.indexOf(uid);
+    if(index >= 0) {return this.users[index]}
+    else {
+      console.error('UID not found:', uid);
+      return new User();
+    }    
   }
 
   
