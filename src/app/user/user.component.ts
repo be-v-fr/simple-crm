@@ -1,4 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
+
 import { User } from '../../models/user.class';
 import { UsersService } from '../../services/users.service';
 
@@ -13,7 +15,7 @@ import { DialogAddUserComponent } from '../dialog-add-user/dialog-add-user.compo
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatTooltipModule, MatCardModule],
+  imports: [RouterLink, MatButtonModule, MatIconModule, MatTooltipModule, MatCardModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
@@ -36,4 +38,9 @@ export class UserComponent {
       // result => console.log(result)
     );
   }
+
+  // openUserDetails(userIndex: number) {
+  //   const uids = this.usersService.getUids();
+  //   console.log(uids[userIndex]);
+  // }
 }

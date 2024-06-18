@@ -6,8 +6,8 @@
                 <th>E-Mail</th>
                 <th>City</th>
             </tr>
-            @for (user of usersService.getUsers(); track user) {
-            <tr class="transition-standard">
+            @for (user of usersService.getUsers(); track user; let i = $index) {
+            <tr class="transition-standard" routerLink="{{'/user/' + usersService.getUid(user)}}">
                 <td>{{user.firstName}} {{user.lastName}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.city}}</td>
