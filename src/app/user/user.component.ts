@@ -31,16 +31,8 @@ export class UserComponent {
   
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogAddUserComponent, {
+    this.dialog.open(DialogAddUserComponent, {
       data: {},
     });
-    dialogRef.afterClosed().subscribe(
-      // result => console.log(result)
-    );
   }
-
-  // openUserDetails(userIndex: number) {
-  //   const uids = this.usersService.getUids();
-  //   console.log(uids[userIndex]);
-  // }
 }

@@ -1,0 +1,36 @@
+<div class="dialog-container">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <h2 mat-dialog-title>Edit user</h2>
+    <mat-dialog-content class="dialog-content">
+        <div class="dialog-row">
+            <mat-form-field appearance="outline">
+                <mat-label>First name</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.firstName" matInput>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Last name</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.lastName" matInput>
+            </mat-form-field>
+        </div>
+            <mat-form-field appearance="outline">
+                <mat-label>E-Mail</mat-label>
+                <input [disabled]="loading" [(ngModel)]="user.email" matInput type="email" [formControl]="emailFormControl">
+            </mat-form-field>
+        <mat-form-field>
+            <mat-label>Birth date</mat-label>
+            <input [disabled]="loading" [(ngModel)]="birthDate" matInput [matDatepicker]="datepicker" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                    <button mat-button matDatepickerCancel>Cancel</button>
+                    <button mat-raised-button matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+            </mat-datepicker>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions class="dialog-actions">
+        <button [disabled]="loading" mat-button (click)="onNoClick()">Cancel</button>
+        <button [disabled]="loading" mat-button (click)="saveUser()" [mat-dialog-close]="">Save</button>
+    </mat-dialog-actions>
+</div>

@@ -28,7 +28,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-dialog-add-user',
+  selector: 'app-dialog-edit-user-main',
   standalone: true,
   imports: [
     CommonModule,
@@ -44,10 +44,10 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     MatDatepickerModule,
     MatProgressBarModule
   ],
-  templateUrl: './dialog-add-user.component.html',
-  styleUrl: './dialog-add-user.component.scss'
+  templateUrl: './dialog-edit-user-main.component.html',
+  styleUrl: './dialog-edit-user-main.component.scss'
 })
-export class DialogAddUserComponent implements OnInit {
+export class DialogEditUserMainComponent {
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   private usersService = inject(UsersService);
   loading = false;
@@ -55,7 +55,7 @@ export class DialogAddUserComponent implements OnInit {
   uid: string | null = null;
 
   constructor(
-    public dialogRef: MatDialogRef<DialogAddUserComponent>,
+    public dialogRef: MatDialogRef<DialogEditUserMainComponent>,
     @Inject(MAT_DIALOG_DATA) public user: User,
     @Inject(MAT_DIALOG_DATA) public birthDate: Date,
   ) { }
@@ -68,10 +68,10 @@ export class DialogAddUserComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  saveNewUser(): void {
+  saveUser(): void {
     this.loading = true;
     this.user.birthDate = this.birthDate.getTime ? this.birthDate.getTime() : 0;
-    this.usersService.addUser(this.user)
+    this.usersService.updateUser(this.uid, this.user)
       .then(() => this.loading = false);
   }
 }

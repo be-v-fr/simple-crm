@@ -1,0 +1,25 @@
+.dialog-container {
+    position: relative;
+    mat-progress-bar {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+    .dialog-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        .dialog-row {
+            display: flex;
+            gap: 16px;
+        }
+        h3 {
+            margin-top: 12px;
+            margin-bottom: 4px;
+        }
+    }
+    .dialog-actions {
+        justify-content: flex-end;
+    }
+}

@@ -1,5 +1,5 @@
 import { Injectable, inject, OnDestroy } from '@angular/core';
-import { Firestore, collection, onSnapshot, collectionData, doc, getDocs, addDoc } from '@angular/fire/firestore';
+import { Firestore, collection, onSnapshot, collectionData, doc, getDocs, addDoc, updateDoc } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 import { User } from '../models/user.class';
 
@@ -10,7 +10,7 @@ import { User } from '../models/user.class';
 export class UsersService implements OnDestroy {
   private firestore = inject(Firestore);
   private usersRef = collection(this.firestore, 'users');
-  private users$ = new Subject<User[]>();
+  users$ = new Subject<User[]>();
   private users: User[] = [];
   private uids: string[] = [];
   unsubUsers;
@@ -56,7 +56,7 @@ export class UsersService implements OnDestroy {
 
   getUid(user: User): string | null {
     const index = this.users.indexOf(user);
-    if(index >= 0) {return this.uids[index]}
+    if (index >= 0) { return this.uids[index] }
     else {
       console.error('User not found:', user);
       return null;
@@ -64,17 +64,30 @@ export class UsersService implements OnDestroy {
   }
 
 
+  getDocRef(uid: string) {
+    return doc(this.usersRef, uid);
+  }
+
+
   getUserByUid(uid: string): User {
     const index = this.uids.indexOf(uid);
-    if(index >= 0) {return this.users[index]}
+    if (index >= 0) { return this.users[index] }
     else {
       console.error('UID not found:', uid);
       return new User();
-    }    
+    }
   }
 
-  
+
   async addUser(user: User): Promise<void> {
     await addDoc(this.usersRef, user);
+  }
+
+
+  async updateUser(uid: string | null, data: User): Promise<void> {
+    if (uid) {
+      await updateDoc(this.getDocRef(uid), data.toJson())
+        .catch((err: Error) => { console.error(err) });
+    }
   }
 }
